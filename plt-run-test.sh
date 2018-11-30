@@ -1,1 +1,1 @@
-plt-r6rs ++path src tests/unit-test.scm
+plt-r6rs ++path src tests/type-tests.scm

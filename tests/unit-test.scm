@@ -2,26 +2,43 @@
 
 (import 
  (rnrs base (6))
- (rnrs exceptions (6))
- (rnrs io simple (6))
- (rnrs hashtables (6))
- (rnrs records syntactic (6))
- (rnrs records procedural (6))
- (srfi :64)   ; unit testing
- (srfi :88)  ; keywords
+ ;; composite standard library, imports most std libs
+ (rnrs (6))  
+ ;; unit testing
+ (srfi :64)
  (leg components))
 
 
 (define runner (test-runner-simple))
 
-
-
 (test-with-runner 
  runner
  (test-group 
-  "Tests of the support functions for accessing the intermediate data"
-  
+  "Tests of support functions and data types"
+  (test-group 
+   "(keyword->symbol) utility function"
+   ;; first, show that the operations on keywords are sensible
+   (define label (string->label "test-keyword")
+   (test-equal label 'test-keyword:)
+   (define sym (label->symbol label))
+   (test-equal sym 'test-keyword))
+
+#|
+  (test-group 
+   "Construction of and operations on the 'assembly-listing-line' type"
+   
   )
+
+
+  (test-group 
+   "Construction of and operations on the 'assembly-results-record' type"
+  )
+|#
+)))
+  
+
+  
+#|
  (test-group 
   "Tests of Leg pass one operations"
   (test-group 
@@ -73,10 +90,12 @@
     (let-values ((processed-code
                   lines
                   size)
-                 (make-assembly-encoding 
+                 ( 
                   '(((add imm) r0 r0 1)
                     test-label:
                     (b test-label:))))
                 (test-equal lines 3)
                 (test-equal size (* 2 4))
                 (test-equal test-label: 0)))))
+
+|#
