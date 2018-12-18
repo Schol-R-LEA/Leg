@@ -1,0 +1,132 @@
+%%%% Starting test Tests of support functions and data types
+Group begin: Tests of support functions and data types
+Group begin: (keyword->symbol) utility function
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 24
+  source-form: (test-equal test-label (quote test-keyword:))
+Test end:
+  expected-value: test-keyword:
+  actual-value: test-keyword:
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 25
+  source-form: (test-equal sym (quote test-keyword))
+Test end:
+  expected-value: test-keyword
+  actual-value: test-keyword
+  result-kind: pass
+Group end: (keyword->symbol) utility function
+Group begin: Construction of and operations on the 'assembly-listing-line' type
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 46
+  source-form: (test-equal (get-line-number label-line) 0)
+Test end:
+  expected-value: 0
+  actual-value: 0
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 47
+  source-form: (test-equal (get-line-size label-line) 0)
+Test end:
+  expected-value: 0
+  actual-value: 0
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 48
+  source-form: (test-equal (get-line-byte-values label-line) (quote ()))
+Test end:
+  expected-value: ()
+  actual-value: ()
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 49
+  source-form: (test-equal (get-line-source-code label-line) (quote start:))
+Test end:
+  expected-value: start:
+  actual-value: start:
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 50
+  source-form: (test-equal (get-line-number nop-line) 1)
+Test end:
+  expected-value: 1
+  actual-value: 1
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 51
+  source-form: (test-equal (get-line-size nop-line) 4)
+Test end:
+  expected-value: 4
+  actual-value: 4
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 52
+  source-form: (test-equal (get-line-byte-values nop-line) nop)
+Test end:
+  expected-value: #"\0\0\0\0"
+  actual-value: #"\0\0\0\0"
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 53
+  source-form: (test-equal (get-line-source-code nop-line) (quote (nop)))
+Test end:
+  expected-value: {nop}
+  actual-value: {nop}
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 55
+  source-form: (test-error (make-assembly-listing-line (quote bad-type) 4 nop (quote (nop))))
+Test end:
+  actual-value: #t
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 56
+  source-form: (test-error (make-assembly-listing-line -11 4 (quote (nop))))
+Test end:
+  actual-value: #t
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 57
+  source-form: (test-error (make-assembly-listing-line 1 4 (quote bad-value) (quote (nop))))
+Test end:
+  actual-value: #t
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 58
+  source-form: (test-error (make-assembly-listing-line 1 -4 nop (quote (nop))))
+Test end:
+  actual-value: #t
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 59
+  source-form: (test-error (make-assembly-listing-line 1 4 (quote ()) (quote (nop))))
+Test end:
+  actual-value: #t
+  result-kind: pass
+Group end: Construction of and operations on the 'assembly-listing-line' type
+Group begin: Construction of and operations on the 'assembly-results-record' type
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 64
+  source-form: (test-assert #t)
+Test end:
+  actual-value: #t
+  result-kind: pass
+Group end: Construction of and operations on the 'assembly-results-record' type
+Group end: Tests of support functions and data types
+# of expected passes      16

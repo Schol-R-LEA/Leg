@@ -1,61 +1,22 @@
 #!r6rs
 
 
-(library (leg assembly-statements)
+(library (leg assembly-record)
   (export
    assembly-listing-line make-assembly-listing-line assembly-listing-line?
-   get-line-number get-byte-values get-line-source-code
-   
-   assembly-result-record make-assembly-result-record assembly-result-record?
-   identify-expr resolve-expr)
+   get-line-number get-byte-values get-line-source-code)
   
   (import (rnrs base (6))
           ;; composite standard library, imports most std libs
           (rnrs (6))
           (leg labels))
 
-
-  (define-condition-type &listing-line-error
-    &syntax 
-    make-listing-line-error listing-line-error?)
-
-  (define-condition-type &listing-opcode-error
-    &syntax 
-    make-listing-opcode-error listing-opcode-error?)
-
-
-  (define-record-type assembly-listing-line
-    "Simple type holding the listing of a single line of the
-     program, with default predicate and accessors.
-     The line-number must be a positive integer, while the
-     opcode must be a bytevector or a null list."
-    (fields 
-     (immutable line-number get-line-number)
-     (immutable byte-values get-byte-values)
-     (immutable source-code get-line-source-code))
-    (protocol 
-     (lambda (ctor)
-       (lambda (line bytes src)
-         (cond 
-          ((not (and (integer? line)
-                     (positive? line)))
-           (raise-continuable 
-            (make-listing-line-error
-             (make-message-condition 
-              "assembly-listing-line: invalid line number entry."))))
-          ((not (or (bytevector? bytes) (null? bytes)))  
-           (raise-continuable 
-            (make-listing-opcode-error
-             (make-message-condition 
-              "assembly-listing-line: invalid opcode entry."))))
-          (else (ctor line bytes src)))))))
-
   
   (define-record-type assembly-result-record
     (fields
      ((immutable source-code)
       (mutable opcodes)     ;; the final output
-      (mutable listing)     ;; annotated, displayble output
+      (mutable listing)     ;; annotated, displayable output
       (mutable remaining-code)
       (mutable lines)
       (mutable expr-count)
@@ -96,8 +57,3 @@
 
   (define (resolve-expr expr)
     (())))
-
-
-
-
-
