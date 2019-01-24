@@ -1,27 +1,27 @@
-%%%% Starting test Tests of support functions and data types
-Group begin: Tests of support functions and data types
-Group begin: (keyword->symbol) utility function
-Test begin:
-  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 24
-  source-form: (test-equal test-label (quote test-keyword:))
-Test end:
-  expected-value: test-keyword:
-  actual-value: test-keyword:
-  result-kind: pass
+%%%% Starting test Tests of support functions and data types.
+Group begin: Tests of support functions and data types.
+Group begin: (label->symbol) utility function.
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
   source-line: 25
-  source-form: (test-equal sym (quote test-keyword))
+  source-form: (test-equal test-label (quote test-label:))
 Test end:
-  expected-value: test-keyword
-  actual-value: test-keyword
+  expected-value: test-label:
+  actual-value: test-label:
   result-kind: pass
-Group end: (keyword->symbol) utility function
-Group begin: Construction of and operations on the 'assembly-listing-line' type
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 46
+  source-line: 26
+  source-form: (test-equal sym (quote test-label))
+Test end:
+  expected-value: test-label
+  actual-value: test-label
+  result-kind: pass
+Group end: (label->symbol) utility function.
+Group begin: Construction of and operations on the 'assembly-listing-line' type.
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 47
   source-form: (test-equal (get-line-number label-line) 0)
 Test end:
   expected-value: 0
@@ -29,7 +29,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 47
+  source-line: 48
   source-form: (test-equal (get-line-size label-line) 0)
 Test end:
   expected-value: 0
@@ -37,7 +37,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 48
+  source-line: 49
   source-form: (test-equal (get-line-byte-values label-line) (quote ()))
 Test end:
   expected-value: ()
@@ -45,7 +45,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 49
+  source-line: 50
   source-form: (test-equal (get-line-source-code label-line) (quote start:))
 Test end:
   expected-value: start:
@@ -53,7 +53,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 50
+  source-line: 51
   source-form: (test-equal (get-line-number nop-line) 1)
 Test end:
   expected-value: 1
@@ -61,7 +61,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 51
+  source-line: 52
   source-form: (test-equal (get-line-size nop-line) 4)
 Test end:
   expected-value: 4
@@ -69,7 +69,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 52
+  source-line: 53
   source-form: (test-equal (get-line-byte-values nop-line) nop)
 Test end:
   expected-value: #"\0\0\0\0"
@@ -77,7 +77,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 53
+  source-line: 54
   source-form: (test-equal (get-line-source-code nop-line) (quote (nop)))
 Test end:
   expected-value: {nop}
@@ -85,53 +85,53 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 55
+  source-line: 56
   source-form: (test-error (make-assembly-listing-line (quote bad-type) 4 nop (quote (nop))))
 Test end:
   actual-value: #t
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 56
+  source-line: 57
   source-form: (test-error (make-assembly-listing-line -11 4 (quote (nop))))
 Test end:
   actual-value: #t
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 57
+  source-line: 58
   source-form: (test-error (make-assembly-listing-line 1 4 (quote bad-value) (quote (nop))))
 Test end:
   actual-value: #t
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 58
+  source-line: 59
   source-form: (test-error (make-assembly-listing-line 1 -4 nop (quote (nop))))
 Test end:
   actual-value: #t
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 59
+  source-line: 60
   source-form: (test-error (make-assembly-listing-line 1 4 (quote ()) (quote (nop))))
 Test end:
   actual-value: #t
   result-kind: pass
-Group end: Construction of and operations on the 'assembly-listing-line' type
-Group begin: Construction of and operations on the 'assembly-results-record' type
+Group end: Construction of and operations on the 'assembly-listing-line' type.
+Group begin: Construction of and operations on the 'assembly-results-record' type.
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 64
+  source-line: 65
   source-form: (test-assert #t)
 Test end:
   actual-value: #t
   result-kind: pass
-Group end: Construction of and operations on the 'assembly-results-record' type
-Group begin: Construction of and operations on the 'label-record' type
+Group end: Construction of and operations on the 'assembly-results-record' type.
+Group begin: Construction of and operations on the 'label-record' type.
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 70
+  source-line: 71
   source-form: (test-equal (get-label unresolved-label) (quote unresolved))
 Test end:
   expected-value: unresolved
@@ -139,7 +139,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 71
+  source-line: 72
   source-form: (test-equal (get-label-address unresolved-label) #f)
 Test end:
   expected-value: #f
@@ -147,7 +147,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 73
+  source-line: 74
   source-form: (test-equal (get-label-address unresolved-label) 5591040)
 Test end:
   expected-value: 5591040
@@ -155,7 +155,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 74
+  source-line: 75
   source-form: (test-equal (get-label resolved-label) (quote resolved))
 Test end:
   expected-value: resolved
@@ -163,7 +163,7 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 75
+  source-line: 76
   source-form: (test-equal (get-label-address resolved-label) 4660)
 Test end:
   expected-value: 4660
@@ -171,11 +171,39 @@ Test end:
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 76
+  source-line: 77
   source-form: (test-error ((make-label-record (quote not-a-label) 2576980377)))
 Test end:
   actual-value: #t
   result-kind: pass
-Group end: Construction of and operations on the 'label-record' type
-Group end: Tests of support functions and data types
-# of expected passes      22
+Group end: Construction of and operations on the 'label-record' type.
+Group begin: Operations on packed bytevectors.
+Group begin: (bitwise-pack) utility function.
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 151
+  source-form: (test-equal 5 (bitwise-pack 0 8 test-low))
+Test end:
+  expected-value: 5
+  actual-value: 5
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 152
+  source-form: (test-equal 160 (bitwise-pack 0 8 test-high))
+Test end:
+  expected-value: 160
+  actual-value: 160
+  result-kind: pass
+Test begin:
+  source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
+  source-line: 153
+  source-form: (test-equal 165 (bitwise-pack 0 8 test-high-low))
+Test end:
+  expected-value: 165
+  actual-value: 165
+  result-kind: pass
+Group end: (bitwise-pack) utility function.
+Group end: Operations on packed bytevectors.
+Group end: Tests of support functions and data types.
+# of expected passes      25

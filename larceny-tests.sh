@@ -1,1 +1,1 @@
-larceny -I src/leg tests/type-tests.scm 
+larceny -r6 -I src/leg tests/type-tests.scm 

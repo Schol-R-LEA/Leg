@@ -7,7 +7,8 @@
  ;; unit testing
  (srfi :64)
  (leg labels)
- (leg listing))
+ (leg listing)
+ (leg instruction-generators))
 
 
 (define runner (test-runner-simple))
@@ -15,17 +16,17 @@
 (test-with-runner
  runner
  (test-group 
-  "Tests of support functions and data types"
+  "Tests of support functions and data types."
   (test-group 
-   "(keyword->symbol) utility function"
-   ;; first, show that the operations on keywords are sensible
-   (let* ((test-label (string->label "test-keyword"))
+   "(label->symbol) utility function."
+   ;; first, show that the operations on labels are sensible
+   (let* ((test-label (string->label "test-label"))
           (sym (label->symbol test-label)))
-     (test-equal test-label 'test-keyword:)
-     (test-equal sym 'test-keyword)))
+     (test-equal test-label 'test-label:)
+     (test-equal sym 'test-label)))
 
   (test-group 
-   "Construction of and operations on the 'assembly-listing-line' type"
+   "Construction of and operations on the 'assembly-listing-line' type."
    (let*
        ((label-line (make-assembly-listing-line 0 0 '() 'start:))
         (nop (make-bytevector 4 0))
@@ -60,8 +61,30 @@
 
 
   (test-group 
-   "Construction of and operations on the 'assembly-results-record' type"
-   (test-assert #t)
-  )))
-  
+   "Construction of and operations on the 'assembly-results-record' type."
+   (test-assert #t))
 
+  (test-group 
+   "Construction of and operations on the 'label-record' type."
+   (let ((unresolved-label (make-label-record 'unresolved:))
+         (resolved-label (make-label-record 'resolved: #x1234)))
+     (test-equal (get-label unresolved-label) 'unresolved)
+     (test-equal (get-label-address unresolved-label) #f)
+     (set-label-address unresolved-label #x555000)
+     (test-equal (get-label-address unresolved-label) #x555000)
+     (test-equal (get-label resolved-label) 'resolved)     
+     (test-equal (get-label-address resolved-label) #x1234)
+     (test-error ((make-label-record 'not-a-label #x99999999)))))
+
+  (test-group 
+   "Operations on packed bytevectors."
+   (test-group 
+    "(bitwise-pack) utility function."
+    (let* ((high (bitwise-ior 0 (bitwise-arithmetic-shift-left #xA 4)))
+           (low (bitwise-ior high #x5))
+           (test-high '((#xA . (7 . 4))))
+           (test-low  '((#x5 . (3 . 0))))            
+           (test-high-low (append test-high test-low)))
+      (test-equal #x5 (bitwise-pack 0 8 test-low))
+      (test-equal #xA0 (bitwise-pack 0 8 test-high))      
+      (test-equal #xA5 (bitwise-pack 0 8 test-high-low)))))))
