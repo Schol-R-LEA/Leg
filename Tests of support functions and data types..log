@@ -181,24 +181,24 @@ Group begin: Operations on packed bytevectors.
 Group begin: (bitwise-pack) utility function.
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 151
-  source-form: (test-equal 5 (bitwise-pack 0 8 test-low))
+  source-line: 88
+  source-form: (test-equal 5 (bitwise-pack 0 (quote combine) 8 test-low))
 Test end:
   expected-value: 5
   actual-value: 5
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 152
-  source-form: (test-equal 160 (bitwise-pack 0 8 test-high))
+  source-line: 89
+  source-form: (test-equal 160 (bitwise-pack 0 (quote combine) 8 test-high))
 Test end:
   expected-value: 160
   actual-value: 160
   result-kind: pass
 Test begin:
   source-file: "/home/schol-r-lea/Documents/Programming/Projects/Leg/tests/type-tests.scm"
-  source-line: 153
-  source-form: (test-equal 165 (bitwise-pack 0 8 test-high-low))
+  source-line: 90
+  source-form: (test-equal 165 (bitwise-pack 0 (quote combine) 8 test-high-low))
 Test end:
   expected-value: 165
   actual-value: 165
